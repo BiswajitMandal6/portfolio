@@ -1,0 +1,103 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 18px 5vw;
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+.nav.scrolled {
+  background: rgba(7,11,20,0.88);
+  backdrop-filter: blur(18px);
+  padding: 12px 5vw;
+  border-bottom: 1px solid rgba(0,217,255,0.07);
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-right: auto;
+}
+.logoBM { color: #E8EDF5; }
+.logoDot { color: #FF4ECD; }
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0 40px;
+}
+.link {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(232,237,245,0.5);
+  transition: color 0.2s;
+  padding-bottom: 8px;
+}
+.link:hover { color: rgba(232,237,245,0.9); }
+.link.active { color: #E8EDF5; }
+
+.num {
+  color: #00D9FF;
+  font-size: 10px;
+}
+.label {}
+
+.underline {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00D9FF, #8B5CF6);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(0,217,255,0.5);
+}
+
+.cta {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border: 1px solid rgba(0,217,255,0.4);
+  border-radius: 6px;
+  background: transparent;
+  color: #E8EDF5;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: none;
+  transition: all 0.2s ease;
+}
+.cta:hover {
+  background: rgba(0,217,255,0.08);
+  border-color: rgba(0,217,255,0.8);
+  box-shadow: 0 0 20px rgba(0,217,255,0.15);
+}
+.ctaArrow { color: #00D9FF; }
+
+/* Right accent vertical bar */
+.accentBar {
+  width: 2px;
+  height: 32px;
+  background: linear-gradient(to bottom, #00D9FF, #8B5CF6);
+  border-radius: 2px;
+  margin-left: 24px;
+  box-shadow: 0 0 12px rgba(0,217,255,0.4);
+}
+
+@media (max-width: 900px) {
+  .links { display: none; }
+  .accentBar { display: none; }
+}

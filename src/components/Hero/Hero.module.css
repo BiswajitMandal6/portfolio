@@ -1,0 +1,47 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #070B14;
+  isolation: isolate;
+}
+
+/* Canvas always behind — z-index: 0 */
+.canvasLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Text always in front — z-index: 10 */
+.textLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.mobileBg {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 60% 50%, #0d1428 0%, #070B14 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileOrb {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #FF4ECD, #8B5CF6 50%, #00D9FF);
+  opacity: 0.6;
+  animation: pulse 3s ease-in-out infinite;
+  box-shadow: 0 0 80px rgba(0,217,255,0.4), 0 0 160px rgba(139,92,246,0.2);
+}
+
+@keyframes pulse {
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(1.06); }
+}
