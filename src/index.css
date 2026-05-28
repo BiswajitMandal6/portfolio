@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased font-sans overflow-x-hidden selection:bg-clinic-teal-100 selection:text-clinic-teal-700;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-clinic-navy-950;
+  }
+}
+
+/* Custom utilities */
+.gradient-bg {
+  background: radial-gradient(circle at 10% 20%, rgba(240, 244, 249, 1) 0%, rgba(253, 253, 253, 1) 90%);
+}
+
+.medical-gradient {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #0d9488 100%);
+}
+
+.teal-gradient {
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+}
+
+.blue-teal-text {
+  @apply bg-gradient-to-r from-clinic-navy-800 to-clinic-teal-600 bg-clip-text text-transparent;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
