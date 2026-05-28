@@ -51,28 +51,45 @@ function useVisitorCount() {
   const [count, setCount] = useState(null);
 
   useEffect(() => {
-    // Get stored count from localStorage
-    const stored = parseInt(localStorage.getItem('bm_visitors') || '0');
-    // Increment on each unique session
-    const sessionKey = 'bm_session_' + new Date().toDateString();
-    const visited = sessionStorage.getItem(sessionKey);
-    let newCount = stored;
-    if (!visited) {
-      newCount = stored + 1;
-      localStorage.setItem('bm_visitors', newCount);
-      sessionStorage.setItem(sessionKey, '1');
-    }
-    // Animate count up
-    let start = 0;
-    const end = newCount;
-    const duration = 1500;
-    const step = Math.ceil(end / (duration / 16));
-    const timer = setInterval(() => {
-      start = Math.min(start + step, end);
-      setCount(start);
-      if (start >= end) clearInterval(timer);
-    }, 16);
-    return () => clearInterval(timer);
+    const animateTo = (end) => {
+      let start = 0;
+      const step = Math.ceil(end / 60);
+      const timer = setInterval(() => {
+        start = Math.min(start + step, end);
+        setCount(start);
+        if (start >= end) clearInterval(timer);
+      }, 16);
+    };
+
+    const fetchCount = async () => {
+      try {
+        // Only increment once per session
+        const sessionKey = 'bm_visited';
+        const visited = sessionStorage.getItem(sessionKey);
+
+        if (!visited) {
+          // Hit endpoint to increment
+          const res = await fetch(
+            'https://api.countapi.xyz/hit/biswajitmandal-portfolio/visits'
+          );
+          const data = await res.json();
+          sessionStorage.setItem(sessionKey, '1');
+          animateTo(data.value);
+        } else {
+          // Just read without incrementing
+          const res = await fetch(
+            'https://api.countapi.xyz/get/biswajitmandal-portfolio/visits'
+          );
+          const data = await res.json();
+          animateTo(data.value);
+        }
+      } catch {
+        // Fallback — show nothing if API fails
+        setCount(null);
+      }
+    };
+
+    fetchCount();
   }, []);
 
   return count;
@@ -113,15 +130,15 @@ export default function Contact() {
 
     try {
       await emailjs.send(
-        'service_mft189n',       
-        'template_w2maiwa',      
+        'YOUR_SERVICE_ID',       // ← replace with your EmailJS Service ID
+        'YOUR_TEMPLATE_ID',      // ← replace with your EmailJS Template ID
         {
           from_name:  form.name,
           from_email: form.email,
           message:    form.message,
           to_name:    'Biswajit',
         },
-        'Ry09gfoFPoV60NEtV'        
+        'YOUR_PUBLIC_KEY'        // ← replace with your EmailJS Public Key
       );
       setStatus('sent');
       setForm({ name: '', email: '', message: '' });
