@@ -46,7 +46,7 @@ function GlobeSphere() {
       for (let lon = 0; lon < 360; lon += 10) {
         const phi = (90 - lat) * (Math.PI / 180);
         const theta = lon * (Math.PI / 180);
-        const r = 0.92;
+        const r = 1.45;
         positions.push([
           r * Math.sin(phi) * Math.cos(theta),
           r * Math.cos(phi),
@@ -75,13 +75,13 @@ function GlobeSphere() {
       {/* Surface dots */}
       {dotPositions.map((pos, i) => (
         <mesh key={i} position={pos}>
-          <sphereGeometry args={[0.01, 4, 4]} />
+          <sphereGeometry args={[0.025, 4, 4]} />
           <meshStandardMaterial
             color="#00D9FF"
             emissive="#00D9FF"
             emissiveIntensity={3}
             transparent
-            opacity={0.6}
+            opacity={1}
           />
         </mesh>
       ))}
