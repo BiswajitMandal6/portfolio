@@ -4,6 +4,14 @@ import { HeroScene } from './HeroScene';
 import { HeroText } from './HeroText';
 import styles from './Hero.module.css';
 
+// Check WebGL support for cross-browser compatibility
+const hasWebGL = (() => {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+  } catch { return false; }
+})();
+
 export default function Hero() {
   const mousePos = useRef({ x: 0, y: 0 });
   const isMobile = window.innerWidth < 768;
@@ -20,7 +28,7 @@ export default function Hero() {
 
       {/* LAYER 1 — 3D canvas */}
       <div className={styles.canvasLayer}>
-        {!isMobile ? (
+        {!isMobile && hasWebGL ? (
           <Canvas
             style={{ width: '100%', height: '100%' }}
             gl={{
@@ -30,6 +38,7 @@ export default function Hero() {
               toneMappingExposure: 1.3,
               alpha: false,
               preserveDrawingBuffer: false,
+              failIfMajorPerformanceCaveat: false,
             }}
             dpr={Math.min(window.devicePixelRatio, 2)}
             frameloop="always"

@@ -20,7 +20,7 @@ function OrbitRing({ radius, tilt, color, speed, dotCount = 6 }) {
     <group rotation={[tilt, 0, 0]}>
       <group ref={groupRef}>
         <mesh>
-          <torusGeometry args={[radius, 0.008, 8, 128]} />
+          <torusGeometry args={[radius, 0.008, 6, 64]} />
           <meshStandardMaterial color={color} emissive={color} emissiveIntensity={3} transparent opacity={0.9} />
         </mesh>
         {dots.map(d => (
@@ -42,8 +42,8 @@ function GlobeSphere() {
 
   const dotPositions = useMemo(() => {
     const positions = [];
-    for (let lat = -80; lat <= 80; lat += 10) {
-      for (let lon = 0; lon < 360; lon += 10) {
+    for (let lat = -80; lat <= 80; lat += 15) {
+      for (let lon = 0; lon < 360; lon += 15) {
         const phi = (90 - lat) * (Math.PI / 180);
         const theta = lon * (Math.PI / 180);
         const r = 1.45;
@@ -60,7 +60,7 @@ function GlobeSphere() {
   return (
     <group ref={ref}>
       {/* Sphere core */}
-      <Sphere args={[1.4, 64, 64]}>
+      <Sphere args={[1.4, 32, 32]}>
         <meshStandardMaterial
           color="#020818"
           emissive="#061530"
@@ -87,7 +87,7 @@ function GlobeSphere() {
       ))}
 
       {/* Outer glow shell */}
-      <Sphere args={[1.45, 32, 32]}>
+      <Sphere args={[1.45, 16, 16]}>
         <meshStandardMaterial
           color="#00D9FF"
           emissive="#00D9FF"
