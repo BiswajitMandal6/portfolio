@@ -294,67 +294,6 @@
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Visitor counter */
-.visitorWrap {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.visitorBox {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 28px;
-  background: rgba(0,217,255,0.04);
-  border: 1px solid rgba(0,217,255,0.15);
-  border-radius: 12px;
-  backdrop-filter: blur(8px);
-}
-.visitorIcon { font-size: 20px; }
-.visitorText {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-.visitorCount {
-  font-family: 'Syne', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #00D9FF, #8B5CF6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  min-width: 60px;
-}
-.visitorLabel {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: rgba(232,237,245,0.3);
-  letter-spacing: 0.15em;
-}
-.visitorPulse {
-  position: absolute;
-  inset: -1px;
-  border-radius: 12px;
-  border: 1px solid rgba(0,217,255,0.3);
-  animation: visitorPulse 2.5s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes visitorPulse {
-  0%,100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0; transform: scale(1.03); }
-}
-.visitorSince {
-  font-family: 'Space Mono', monospace;
-  font-size: 9px;
-  color: rgba(232,237,245,0.2);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 /* Signature */
 .signature {
   margin-top: 48px;

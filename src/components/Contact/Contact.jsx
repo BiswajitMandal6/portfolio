@@ -47,58 +47,11 @@ const STATUS_LINES = [
   '> AWAITING TRANSMISSION...',
 ];
 
-function useVisitorCount() {
-  const [count, setCount] = useState(null);
 
-  useEffect(() => {
-    const animateTo = (end) => {
-      let start = 0;
-      const step = Math.ceil(end / 60);
-      const timer = setInterval(() => {
-        start = Math.min(start + step, end);
-        setCount(start);
-        if (start >= end) clearInterval(timer);
-      }, 16);
-    };
-
-    const fetchCount = async () => {
-      try {
-        // Only increment once per session
-        const sessionKey = 'bm_visited';
-        const visited = sessionStorage.getItem(sessionKey);
-
-        if (!visited) {
-          // Hit endpoint to increment
-          const res = await fetch(
-            'https://api.countapi.xyz/hit/biswajitmandal-portfolio/visits'
-          );
-          const data = await res.json();
-          sessionStorage.setItem(sessionKey, '1');
-          animateTo(data.value);
-        } else {
-          // Just read without incrementing
-          const res = await fetch(
-            'https://api.countapi.xyz/get/biswajitmandal-portfolio/visits'
-          );
-          const data = await res.json();
-          animateTo(data.value);
-        }
-      } catch {
-        // Fallback — show nothing if API fails
-        setCount(null);
-      }
-    };
-
-    fetchCount();
-  }, []);
-
-  return count;
-}
 
 export default function Contact() {
   const sectionRef = useRef();
   const headingRef = useRef();
-  const visitorCount = useVisitorCount();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
   const [termLine, setTermLine] = useState(0);
@@ -332,22 +285,6 @@ export default function Contact() {
           </form>
         </div>
       </div>
-
-      {/* Visitor counter */}
-      <div className={styles.visitorWrap}>
-        <div className={styles.visitorBox}>
-          <span className={styles.visitorIcon}>👁</span>
-          <div className={styles.visitorText}>
-            <span className={styles.visitorCount}>
-              {visitorCount !== null ? visitorCount.toLocaleString() : '...'}
-            </span>
-            <span className={styles.visitorLabel}>VISITORS</span>
-          </div>
-          <div className={styles.visitorPulse} />
-        </div>
-        <span className={styles.visitorSince}>since launch</span>
-      </div>
-
       {/* Bottom signature */}
       <div className={styles.signature}>
         <span>Designed & Built by</span>
