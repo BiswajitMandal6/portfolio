@@ -18,13 +18,22 @@ export default function Hero() {
   return (
     <section className={styles.hero} onMouseMove={handleMouseMove} id="hero">
 
-      {/* LAYER 1 — 3D canvas, sits at the back */}
+      {/* LAYER 1 — 3D canvas */}
       <div className={styles.canvasLayer}>
         {!isMobile ? (
           <Canvas
             style={{ width: '100%', height: '100%' }}
-            gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: 3, toneMappingExposure: 1.3, alpha: false }}
-            dpr={[1, 1.5]}
+            gl={{
+              antialias: true,
+              powerPreference: 'high-performance',
+              toneMapping: 3,
+              toneMappingExposure: 1.3,
+              alpha: false,
+              preserveDrawingBuffer: false,
+            }}
+            dpr={Math.min(window.devicePixelRatio, 2)}
+            frameloop="always"
+            flat={false}
           >
             <Suspense fallback={null}>
               <HeroScene mousePos={mousePos} />
@@ -37,7 +46,7 @@ export default function Hero() {
         )}
       </div>
 
-      {/* LAYER 2 — HTML text, always on top */}
+      {/* LAYER 2 — HTML text */}
       <div className={styles.textLayer}>
         <HeroText />
       </div>

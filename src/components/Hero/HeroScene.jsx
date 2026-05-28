@@ -8,7 +8,7 @@ import * as THREE from 'three';
 function GridFloor() {
   const ref = useRef();
   useFrame(({ clock }) => {
-    if (ref.current) ref.current.material.opacity = 0.18 + Math.sin(clock.getElapsedTime() * 0.4) * 0.02;
+    if (ref.current) ref.current.material.opacity = 0.18 + Math.sin(clock.getElapsedTime() * 0.4) * 0.04;
   });
 
   const geo = useRef();
@@ -56,10 +56,10 @@ export function HeroScene({ mousePos }) {
     <>
       <PerspectiveCamera ref={camRef} makeDefault position={[0, 1, 8]} fov={55} />
       <fog attach="fog" args={['#070B14', 12, 22]} />
-      <ambientLight intensity={0.04} />
+      <ambientLight intensity={0.15} color="#0a0a2e" />
       <Stars radius={80} depth={50} count={3000} factor={3} saturation={0.5} fade speed={0.5} />
       <GridFloor />
-      <GlobeOrb position={[1.2, 0.0, -0.5]} />
+      <GlobeOrb />
       <FloatingParticles count={60} />
     </>
   );
