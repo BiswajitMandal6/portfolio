@@ -60,7 +60,7 @@ function GlobeSphere() {
   return (
     <group ref={ref}>
       {/* Sphere core */}
-      <Sphere args={[0.88, 64, 64]}>
+      <Sphere args={[1.4, 64, 64]}>
         <meshStandardMaterial
           color="#020818"
           emissive="#061530"
@@ -87,7 +87,7 @@ function GlobeSphere() {
       ))}
 
       {/* Outer glow shell */}
-      <Sphere args={[0.94, 32, 32]}>
+      <Sphere args={[1.45, 32, 32]}>
         <meshStandardMaterial
           color="#00D9FF"
           emissive="#00D9FF"
@@ -105,11 +105,11 @@ export function GlobeOrb({ position = [0, 0, 0] }) {
   return (
     <Float speed={0.6} floatIntensity={0.1} rotationIntensity={0.0}>
       {/* Pushed hard right: x=2.8, centered vertically, z slightly back */}
-      <group position={[2.8, 0.1, -0.5]}>
+      <group position={[1.8, 0.1, -0.5]}>
         <GlobeSphere />
-        <OrbitRing radius={1.45} tilt={0.3}  color="#00D9FF" speed={0.8}  dotCount={9} />
-        <OrbitRing radius={1.75} tilt={1.05} color="#FF4ECD" speed={-0.6} dotCount={7} />
-        <OrbitRing radius={2.0}  tilt={0.15} color="#8B5CF6" speed={0.4}  dotCount={5} />
+        <OrbitRing radius={2.2} tilt={0.3}  color="#00D9FF" speed={0.8}  dotCount={9} />
+        <OrbitRing radius={2.6} tilt={1.05} color="#FF4ECD" speed={-0.6} dotCount={7} />
+        <OrbitRing radius={3.0}  tilt={0.15} color="#8B5CF6" speed={0.4}  dotCount={5} />
 
         <pointLight color="#00D9FF" intensity={8} distance={10} />
         <pointLight color="#8B5CF6" intensity={5} distance={8} />
